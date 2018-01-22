@@ -1,0 +1,9 @@
+# Damn Vulnerable Blockchain Application
+
+version: "2"
+services:
+  app:
+    build: .
+    ports:
+      - 3030:3030
+      - 8545:8545

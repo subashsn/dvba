@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+		<title>DVBA</title>
+	</head>
+	<body>
+		<div id="app">
+			<section class="hero is-info">
+				<div class="hero-body">
+					<div class="container">
+						<h1 class="title is-1">DVBA Marketplace</h1>
+						<h2 class="subtitle">The Blockchain Marketplace</h2>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="container">
+					<br>
+					<h1 class="title is-2">Token Sale is Live</h1>
+					<h2 class="title is-4">Send ETH to: <%= contractAddress %></h2><br>
+					<div class="block">
+						<h2 class="title is-6">Market place launcing soon.</h2>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script>           
+			var app = new Vue({
+				el:"#app",
+				data: {
+					contractAddress: "Loading..."
+				},
+				methods: {
+					getContractAddress: function(){
+						axios.get('/api/contractaddress')
+						.then(function (response) {
+							this.contractAddress = response.data.contractAddress
+						})
+						.catch(function (error) {
+							console.log(error);
+						});
+					}
+				},
+				mounted: function(){
+					this.getContractAddress()
+				}
+			})
+		</script>
+	</body>
+</html>
